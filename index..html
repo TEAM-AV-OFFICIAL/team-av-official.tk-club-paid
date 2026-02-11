@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>𝐓𝐊 𝐂𝐋𝐔𝐁 - 𝐏𝐀𝐈𝐃 𝐇𝐀𝐂𝐊</title>
+    <style>
+        :root {
+            --primary: #00f3ff;
+            --gold: #ffcc00;
+            --premium-bg: rgba(10, 10, 10, 0.98);
+        }
+
+        body, html { 
+            margin: 0; padding: 0; width: 100%; height: 100%; 
+            background: #000; overflow: hidden; font-family: 'Segoe UI', sans-serif;
+            touch-action: none;
+        }
+
+        #game-container { display: none; width: 100%; height: 100%; position: relative; }
+        iframe { width: 100%; height: 100%; border: none; }
+
+        /* --- Login Screen --- */
+        #login-screen {
+            position: absolute; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #151515, #000);
+            display: flex; justify-content: center; align-items: center; z-index: 10001;
+        }
+        .login-card {
+            background: rgba(25, 25, 25, 0.9); padding: 40px 30px; border-radius: 30px;
+            border: 1px solid rgba(255, 204, 0, 0.2); text-align: center; width: 310px;
+            backdrop-filter: blur(20px); box-shadow: 0 25px 50px rgba(0,0,0,1);
+        }
+
+        .name-wrapper {
+            position: relative; width: 100px; height: 100px; margin: 0 auto 20px;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .name-wrapper::before {
+            content: ''; position: absolute; width: 100%; height: 100%;
+            border: 4px solid transparent; border-top: 4px solid var(--gold);
+            border-bottom: 4px solid var(--gold); border-radius: 50%; animation: spin 2s linear infinite;
+        }
+        .brand-name { font-size: 14px; font-weight: 900; color: var(--gold); z-index: 5; text-shadow: 0 0 10px var(--gold); }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .enter-btn, .tg-3d-btn, .unlock-btn, .reg-btn {
+            width: 100%; padding: 12px; border: none; border-radius: 12px; font-weight: 900;
+            cursor: pointer; text-transform: uppercase; transition: 0.2s; display: inline-block; text-decoration: none; text-align: center; box-sizing: border-box;
+        }
+        .enter-btn { background: linear-gradient(to bottom, #ffcc00, #b8860b); color: #000; box-shadow: 0 5px 0 #7a5a00; margin-top: 10px; }
+        .reg-btn { background: linear-gradient(to bottom, #00ff44, #008800); color: #000; box-shadow: 0 5px 0 #005500; margin-top: 15px; font-size: 13px; }
+        .tg-3d-btn { background: linear-gradient(to bottom, #26a5e4, #0088cc); color: #fff; box-shadow: 0 5px 0 #005f8d; margin-top: 20px; font-size: 13px; }
+        
+        /* --- Floating Panel --- */
+        #main-panel {
+            display: none; position: fixed; top: 50px; left: 20px;
+            width: 125px; height: 145px; background: var(--premium-bg);
+            border: 2px solid rgba(255, 255, 255, 0.1); border-radius: 20px;
+            padding: 10px; text-align: center; z-index: 10000;
+            cursor: move; display: flex; flex-direction: column; 
+            justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            touch-action: none;
+        }
+
+        .av-tag { font-size: 10px; color: var(--gold); font-weight: 900; margin-bottom: 5px; }
+        .p-info { font-size: 9px; color: #888; }
+        #signal { font-size: 16px; font-weight: 900; margin: 10px 0; color: #ff0000; letter-spacing: 1px; }
+        .unlock-btn { font-size: 9px; padding: 6px; background: #ffcc00; color: #000; border-radius: 5px; box-shadow: 0 3px 0 #7a5a00; }
+        .time-box { font-size: 10px; color: var(--primary); font-weight: bold; margin-top: 5px; }
+
+        /* --- Unlock Popup --- */
+        #unlock-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.92); display: none; justify-content: center;
+            align-items: center; z-index: 20001;
+        }
+        .modal-content {
+            background: #1a1a1a; border: 2px solid var(--gold); padding: 25px;
+            border-radius: 25px; text-align: center; width: 85%; max-width: 350px;
+            box-shadow: 0 0 30px rgba(255, 204, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="login-screen">
+        <div class="login-card">
+            <div class="name-wrapper">
+                <div class="brand-name">TEAM AV</div>
+            </div>
+            <h2 style="color:#fff; font-size:18px; margin:0;">WELCOME ❤️</h2>
+            <p style="color:#888; font-size:11px; margin-bottom:20px;">Premium Signal System Live</p>
+            
+            <button class="enter-btn" onclick="enterHack()">Enter Hack Panel</button>
+            <a href="https://t.me/+Z-1lO8scibBkMzg9" target="_blank" class="tg-3d-btn">Join Telegram Channel</a>
+        </div>
+    </div>
+
+    <div id="unlock-modal">
+        <div class="modal-content">
+            <h3 style="color:var(--gold); margin-bottom: 10px;">🔒 সিগন্যাল আনলক করুন</h3>
+            <p style="color:#fff; font-size:13px; line-height: 1.6; text-align: center;">
+                লক সিগন্যাল আনলক করতে এই লিংকে নতুন অ্যাকাউন্ট খুলে ডিপোজিট সম্পূর্ণ করুন 💳 <br><br>
+                স্ক্রিনশট ও UID জমা দিলেই এডমিন থেকে পাসওয়ার্ড পাবেন 🔓🚀
+            </p>
+            
+            <a href="https://tkclub2.com/#/register?invitationCode=81363101201" target="_blank" class="reg-btn">Open New Account</a>
+            
+            <a href="https://t.me/TEAM_AV_OWNER_AYMAN_VAi" target="_blank" class="enter-btn" style="text-decoration:none; display:block; margin-top: 10px;">Message Admin</a>
+            
+            <button onclick="closeModal()" style="background:none; border:none; color:#777; margin-top:15px; font-size:12px; cursor: pointer;">Close</button>
+        </div>
+    </div>
+
+    <div id="game-container">
+        <iframe src="https://tkclub2.com/#/register?invitationCode=81363101201"></iframe>
+        <div id="main-panel">
+            <div class="av-tag">TEAM AV VIP</div>
+            <div class="p-info">PERIOD: <span id="periodNum" style="color:#fff">--</span></div>
+            <div id="signal">LOCKED 🔒</div>
+            <button class="unlock-btn" onclick="showUnlock()">Unlock Signal</button>
+            <div class="time-box">NEXT: <span id="time" style="color:#fff">00</span>s</div>
+        </div>
+    </div>
+
+<script>
+    function enterHack() {
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('game-container').style.display = 'block';
+        const panel = document.getElementById('main-panel');
+        panel.style.display = 'flex';
+        makeDraggable(panel);
+        startTimerOnly();
+    }
+
+    function showUnlock() {
+        document.getElementById('unlock-modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('unlock-modal').style.display = 'none';
+    }
+
+    function makeDraggable(el) {
+        let active = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
+        
+        // Touch events for mobile
+        el.addEventListener("touchstart", (e) => {
+            initialX = e.touches[0].clientX - xOffset;
+            initialY = e.touches[0].clientY - yOffset;
+            active = true;
+        }, false);
+        
+        el.addEventListener("touchend", () => { 
+            initialX = currentX; initialY = currentY; 
+            active = false; 
+        }, false);
+        
+        el.addEventListener("touchmove", (e) => {
+            if (active) {
+                e.preventDefault();
+                currentX = e.touches[0].clientX - initialX;
+                currentY = e.touches[0].clientY - initialY;
+                xOffset = currentX; yOffset = currentY;
+                el.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+            }
+        }, false);
+    }
+
+    function startTimerOnly() {
+        setInterval(() => {
+            const now = new Date();
+            const remain = 30 - (now.getSeconds() % 30);
+            const serial = (now.getHours() * 60 + now.getMinutes()) * 2 + (now.getSeconds() >= 30 ? 2 : 1);
+            
+            document.getElementById('time').innerText = remain;
+            document.getElementById('periodNum').innerText = serial;
+        }, 1000);
+    }
+</script>
+</body>
+</html>
